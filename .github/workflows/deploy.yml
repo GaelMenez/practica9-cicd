@@ -13,8 +13,8 @@ jobs:
       run: ls -la
     - name: Detener contenedor anterior
       run: |
-        docker stop web ||
-        docker rm web ||
+        docker stop web || true
+        docker rm web || true
     - name: Construir imagen Docker
       run: docker build -t practica9-cicd:v1 .
     - name: Ejecutar contenedor
