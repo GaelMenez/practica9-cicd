@@ -1,27 +1,27 @@
-[cite_start]name: Pipeline CI-CD
-[cite_start]on:
-  [cite_start]push: 
-    [cite_start]branches: 
-      - [cite_start]master
-[cite_start]jobs: 
-  [cite_start]deploy: 
-    [cite_start]runs-on: self-hosted 
-    [cite_start]steps: 
-    - [cite_start]name: Descargar codigo 
-      [cite_start]uses: actions/checkout@v4 
-    - [cite_start]name: Mostrar archivos 
-      [cite_start]run: ls -la 
-    - [cite_start]name: Detener contenedor anterior 
-      [cite_start]run: | 
-        [cite_start]docker stop web || 
-        [cite_start]docker rm web || 
-    - [cite_start]name: Construir imagen Docker 
-      [cite_start]run: docker build -t practica9-cicd:v1 . 
-    - [cite_start]name: Ejecutar contenedor 
-      [cite_start]run: | 
-        [cite_start]docker run -d \ 
-        [cite_start]-p 8070:80 \ 
-        [cite_start]--name web \ 
-        [cite_start]practica9-cicd:v1 
-    - [cite_start]name: Verificar contenedor 
-      [cite_start]run: docker ps 
+name: Pipeline CI-CD
+on:
+  push:
+    branches:
+      - master
+jobs:
+  deploy:
+    runs-on: self-hosted
+    steps:
+    - name: Descargar codigo
+      uses: actions/checkout@v4
+    - name: Mostrar archivos
+      run: ls -la
+    - name: Detener contenedor anterior
+      run: |
+        docker stop web ||
+        docker rm web ||
+    - name: Construir imagen Docker
+      run: docker build -t practica9-cicd:v1 .
+    - name: Ejecutar contenedor
+      run: |
+        docker run -d \
+        -p 8070:80 \
+        --name web \
+        practica9-cicd:v1
+    - name: Verificar contenedor
+      run: docker ps
