@@ -1,4 +1,4 @@
-[cite_start]name: Pipeline CI-CD [cite: 79]
+[cite_start]name: Pipeline CI-CD
 [cite_start]on:
   [cite_start]push: 
     [cite_start]branches: 
